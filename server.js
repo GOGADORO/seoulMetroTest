@@ -2,7 +2,7 @@ const express = require('express');
 const app = express();
 const { PythonShell } = require('python-shell')
 
-app.get('/metro',(req,res)=>{
+app.get('/',(req,res)=>{
     res.sendFile(__dirname + '/index.html')
 })
 
