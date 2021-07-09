@@ -8,4 +8,5 @@ app.get('/',(req,res)=>{
 
 app.listen(3001, () => {
     console.log('listen to 3001')
+    console.log(__dirname)
 })
