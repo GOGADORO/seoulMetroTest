@@ -1,61 +1,28 @@
-const express = require("express");
-const cors = require("cors");
-const bodyParser = require("body-parser");
-const morgan = require("morgan");
-const multer = require("multer");
-var http = require('http');
+const express = require('express');
 const app = express();
-const util = require('util');
-require('util.promisify').shim();
-const fs = require('fs');
-const readFileAsync = util.promisify(fs.readFile);
+const { PythonShell } = require('python-shell')
+//post방식으로 데이터를 받을 때 필요한 모듈입니다.
+//req에 데이터를 담아줍니다.
 
-const upload = multer({
-  storage: multer.diskStorage({
-    destination: function (req, file, cb) {
-      cb(null, '../server/uploads/');
-    },
-    filename: function (req, file, cb) {
-      cb(null, file.originalname);
-    }
-  }),
-});
+app.get('/metro',(req,res)=>{
+    res.sendFile(__dirname + '/SeoulSubwayMap-master/index.html')
+})
 
-
-app.use(cors());
-app.use(morgan("combined"));
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
-
-app.get("/image",function(req,res)
-{
-    res.sendFile('/home/plass-sukhyun/2021-1-OSSP1-Debugger-4/preprocess/result.png');
-});
-
-app.post("/", upload.array("file[]"), function(req, res)  {
-  req.setTimeout(60000000000);
-  console.log(req.files);
-
-var {PythonShell} = require('python-shell');
-var options = {
-
+app.get("/",function(req,res){
+let options = {
   mode: 'text',
-  pythonPath: '',
-  pythonOptions: ['-u'],
-  scriptPath: '',
-
+  pythonOptions: ['-u'], // get print results in real-time
+  args: req.param('stations') // Python Script에 넘겨줄 인자 목록
 };
 
-let pyshell = new PythonShell('../2021-1-OSSP1-Debugger-4/facesynthesis.py', options)
-pyshell.end((err, code, signal) => {
-	if(err) throw err;
-  	res.end();
+console.log("stations :", req.param('stations'));
+PythonShell.run('./test.py', options, function(err, msg) {
+	if (err) throw err;
+    console.log('results: %j', msg);
+    res.json(msg);
 });
-
-});
-
-
-const port = process.env.PORT || 3001;
-app.listen(port, () =>{
-	console.log("Upload Server running on 3001...");
-});
+})
+// Python Script의 프로세스 종료하기
+app.listen(3001, () => {
+    console.log('listen to 3001')
+})
