@@ -5,9 +5,7 @@
     <title>Page Title</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="initial-scale=1.0">
-    <script type="text/javascript" url="http://18.117.255.165:3001/home/ubuntu/git_repo/test/js/jquery.js"></script>
-    <script type="text/javascript" url="http://18.117.255.165:3001/home/ubuntu/git_repo/test/js/svg-pan-zoom.min.js"></script>
-    <script type="text/javascript" url="http://18.117.255.165:3001/home/ubuntu/git_repo/test/js/thumbnailViewer.js"></script>
+    
     <style>
         html, body {
             width: 100%;
@@ -79,7 +77,16 @@
             overflow: auto;
         }
     </style>
-    <script>
+</head>
+
+<body>
+    <script type="text/javascript" url="http://18.117.255.165:3001/home/ubuntu/git_repo/test/js/jquery.js"></script>
+    <script type="text/javascript" url="http://18.117.255.165:3001/home/ubuntu/git_repo/test/js/svg-pan-zoom.min.js"></script>
+    <script type="text/javascript" url="http://18.117.255.165:3001/home/ubuntu/git_repo/test/js/thumbnailViewer.js"></script>
+    <div id="mainViewContainer" width="50%">
+        <embed id="seoulSubwayMap" type="image/svg+xml" url="http://18.117.255.165:3001/home/ubuntu/git_repo/test/Seoul_subway_linemap_ko.svg" width="100%" />
+    </div>
+<script>
         var arrStation = [];   //배열 선언
         var obj;
         var jsonData;
@@ -157,13 +164,6 @@
         });
 
     </script>
-</head>
-
-<body>
-    <div id="mainViewContainer" width="50%">
-        <embed id="seoulSubwayMap" type="image/svg+xml" url="http://18.117.255.165:3001/home/ubuntu/git_repo/test/Seoul_subway_linemap_ko.svg" width="100%" />
-    </div>
-
     <div id="thumbViewContainer">
         <svg id="scopeContainer" class="thumbViewClass">
             <g>
