@@ -10,7 +10,7 @@ var server = http.createServer(function(req,res){
 	app.get('/',(req,res)=>{
 	res.setHeader('Content-Type','image/svg+xml')
 	res.sendFile(__dirname + '/index.html')
-	}
+	})
 }
 
 const port = process.env.PORT || 3001;
