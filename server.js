@@ -6,10 +6,12 @@ const app = express();
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-app.get('/',(req,res)=>{
+var server = http.createServer(function(req,res){
+	app.get('/',(req,res)=>{
+	res.setHeader('Content-Type','image/svg+xml')
 	res.sendFile(__dirname + '/index.html')
-})
-
+	}
+}
 
 const port = process.env.PORT || 3001;
 app.listen(port, () =>{
