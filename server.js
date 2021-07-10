@@ -2,6 +2,8 @@ const express = require('express');
 const app = express();
 const bodyParser = require("body-parser");
 const fs = require('fs');
+const util = require('util');
+require('util.promisify').shim();
 const readFileAsync = util.promisify(fs.readFile);
 var i64 = fs.readFileSync('./image.b64');
 svg.append("image")
