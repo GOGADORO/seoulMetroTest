@@ -5,7 +5,8 @@ const app = express();
 const bodyParser = require("body-parser");
 
 app.get('/',(req,res)=>{
-    res.sendFile(__dirname + '/index.html')
+res.status(200).set("Content-Type", "image/svg+xml").send(data)
+	res.sendFile(__dirname + '/index.html')
 })
 
 app.use(bodyParser.json());
