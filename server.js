@@ -5,14 +5,6 @@ const fs = require('fs');
 const util = require('util');
 require('util.promisify').shim();
 const readFileAsync = util.promisify(fs.readFile);
-var i64 = fs.readFileSync('./image.b64');
-svg.append("image")
-  .attr("y","0")
-  .attr("x","0")
-  .attr("xlink:xlink:href", "data:image/png;base64,"+i64) // /!\
-  .attr("width", width)
-  .attr("height", height)
-  .attr("class", "bg-image");
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
