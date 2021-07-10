@@ -2,7 +2,6 @@ const express = require("express");
 const bodyParser = require("body-parser");
 var http = require('http');
 const app = express();
-const bodyParser = require("body-parser");
 
 app.get('/',(req,res)=>{
 res.status(200).set("Content-Type", "image/svg+xml").send(data)
